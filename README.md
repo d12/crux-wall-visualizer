@@ -2,6 +2,8 @@
 
 A web application for visualizing climbing walls and managing hold mappings. This tool allows you to view climbing walls from your Crux gyms and create mappings between hold IDs and external IDs.
 
+Shamelessly vibe-coded in ~30 minutes. Thanks Cursor 🫡
+
 ## Features
 
 - View climbing walls from your Crux gyms
