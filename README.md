@@ -1,39 +1,53 @@
 # Climbing Wall Visualizer
 
-A simple web application that helps visualize climbing wall holds and their IDs. This tool makes it easy to identify holds on a climbing wall by hovering over them.
+A web application for visualizing climbing walls and managing hold mappings. This tool allows you to view climbing walls from your Crux gyms and create mappings between hold IDs and external IDs.
 
 ## Features
 
-- Paste JSON wall data to visualize the climbing wall
-- Interactive hold highlighting on hover
-- Display hold IDs when hovering over holds
-- Responsive design that works on different screen sizes
+- View climbing walls from your Crux gyms
+- Interactive hold selection and highlighting
+- External ID management for holds
+- JSON mapping export functionality
+
+## Getting Started
+
+1. Get your Crux API key:
+   - Open the Crux app
+   - Go to Profile -> Settings -> API Authentication
+   - Copy the API key
+
+2. Open the application in your web browser
+   - Enter your API key
+   - Select a gym from your viewed gyms
+   - Select a wall to visualize
 
 ## Usage
 
-1. Open `index.html` in a web browser
-2. Paste your wall JSON data into the text area
-3. Click "Load Wall" to visualize the wall
-4. Hover over holds to see their IDs
+1. **Selecting Holds**
+   - Click on a hold to select it
+   - Hover over holds to highlight them
+   - The smallest hold is selected when multiple holds overlap
 
-## JSON Format
+2. **Managing External IDs**
+   - Click a hold to select it
+   - Enter an external ID in the input field
+   - Click "Save" to store the mapping
+   - Holds with external IDs are highlighted in purple
 
-The application expects JSON data in the following format:
+3. **Exporting Mappings**
+   - The current mapping is displayed in the ID Mapping section
+   - Click "Copy Mapping" to copy the JSON to your clipboard
 
-```json
-{
-  "image_url": "URL to wall image",
-  "image_width": number,
-  "image_height": number,
-  "holds": [
-    {
-      "id": "hold_id",
-      "mask": [[x1, y1], [x2, y2], ...]
-    },
-    ...
-  ]
-}
-```
+## Color Coding
+
+- Green: Normal holds
+- Purple: Holds with external IDs
+- Red: Hovered holds
+- Blue: Selected holds
+
+## Privacy
+
+Your API key is stored only in your browser's memory and is never sent to any server other than the Crux API. The application runs entirely in your browser.
 
 ## Development
 
