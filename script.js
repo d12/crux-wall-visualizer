@@ -222,15 +222,22 @@ class WallVisualizer {
       throw new Error('No holds found in the data');
     }
 
-    // Validate each hold
-    data.holds.forEach((hold, index) => {
+    // Filter out invalid holds instead of throwing errors
+    this.holds = data.holds.filter(hold => {
       if (!hold.id) {
-        throw new Error(`Hold at index ${index} is missing an ID`);
+        console.warn('Skipping hold with missing ID');
+        return false;
       }
       if (!Array.isArray(hold.mask) || hold.mask.length < 3) {
-        throw new Error(`Hold ${hold.id} has an invalid mask`);
+        console.warn(`Skipping hold ${hold.id} with invalid mask`);
+        return false;
       }
+      return true;
     });
+
+    if (this.holds.length === 0) {
+      throw new Error('No valid holds found in the data');
+    }
   }
 
   loadImage(url) {
@@ -263,35 +270,39 @@ class WallVisualizer {
     const mask = hold.mask;
     if (!mask || mask.length < 3) return;
 
-    this.ctx.beginPath();
-    this.ctx.moveTo(mask[0][0], mask[0][1]);
+    try {
+      this.ctx.beginPath();
+      this.ctx.moveTo(mask[0][0], mask[0][1]);
 
-    for (let i = 1; i < mask.length; i++) {
-      this.ctx.lineTo(mask[i][0], mask[i][1]);
-    }
+      for (let i = 1; i < mask.length; i++) {
+        this.ctx.lineTo(mask[i][0], mask[i][1]);
+      }
 
-    this.ctx.closePath();
+      this.ctx.closePath();
 
-    // Set hold style
-    if (isSelected) {
-      this.ctx.strokeStyle = '#0000ff';
-      this.ctx.lineWidth = 3;
-    } else if (isHovered) {
-      this.ctx.strokeStyle = '#ff0000';
-      this.ctx.lineWidth = 2;
-    } else if (hasExternalId) {
-      this.ctx.strokeStyle = '#800080'; // Purple for holds with external IDs
-      this.ctx.lineWidth = 1;
-    } else {
-      this.ctx.strokeStyle = '#00ff00';
-      this.ctx.lineWidth = 1;
-    }
+      // Set hold style
+      if (isSelected) {
+        this.ctx.strokeStyle = '#0000ff';
+        this.ctx.lineWidth = 3;
+      } else if (isHovered) {
+        this.ctx.strokeStyle = '#ff0000';
+        this.ctx.lineWidth = 2;
+      } else if (hasExternalId) {
+        this.ctx.strokeStyle = '#800080'; // Purple for holds with external IDs
+        this.ctx.lineWidth = 1;
+      } else {
+        this.ctx.strokeStyle = '#00ff00';
+        this.ctx.lineWidth = 1;
+      }
 
-    this.ctx.stroke();
+      this.ctx.stroke();
 
-    if (isSelected || isHovered) {
-      this.ctx.fillStyle = isSelected ? 'rgba(0, 0, 255, 0.1)' : 'rgba(255, 0, 0, 0.1)';
-      this.ctx.fill();
+      if (isSelected || isHovered) {
+        this.ctx.fillStyle = isSelected ? 'rgba(0, 0, 255, 0.1)' : 'rgba(255, 0, 0, 0.1)';
+        this.ctx.fill();
+      }
+    } catch (error) {
+      console.warn(`Error drawing hold ${hold.id}:`, error);
     }
   }
 
