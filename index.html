@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climbing Wall Visualizer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Climbing Wall Visualizer</h1>
+
+    <div class="input-section">
+      <div id="apiKeyContainer">
+        <div class="input-group">
+          <input type="password" id="apiKeyInput" placeholder="Enter your Crux API key">
+          <button id="loadGymsButton">Load Gyms</button>
+        </div>
+      </div>
+
+      <div id="gymSelectionContainer" style="display: none;">
+        <select id="gymSelect">
+          <option value="">Select a gym...</option>
+        </select>
+      </div>
+
+      <div id="wallSelectionContainer" style="display: none;">
+        <select id="wallSelect">
+          <option value="">Select a wall...</option>
+        </select>
+      </div>
+
+      <div id="loadNewContainer" style="display: none;">
+        <button id="loadNewButton">Load new wall</button>
+      </div>
+
+      <div id="errorMessage" class="error-message" style="display: none;"></div>
+    </div>
+
+    <div id="visualizationSection" class="visualization-section" style="display: none;">
+      <div class="canvas-container">
+        <canvas id="wallCanvas"></canvas>
+      </div>
+      <div class="info-panel">
+        <div id="holdInfo" class="hold-info">
+          <h3>Hold Information</h3>
+          <p>Click on a hold to select it</p>
+          <div id="externalIdInput" class="external-id-input" style="display: none;">
+            <div class="input-group">
+              <input type="text" id="externalIdField" placeholder="Enter external ID">
+              <button id="saveExternalId">Save</button>
+            </div>
+          </div>
+        </div>
+        <div id="mappingInfo" class="mapping-info">
+          <h3>ID Mapping</h3>
+          <pre id="mappingJson"></pre>
+          <button id="copyMapping">Copy Mapping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
