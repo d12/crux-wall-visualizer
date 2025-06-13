@@ -45,6 +45,9 @@ class WallVisualizer {
     document.getElementById('errorMessage').style.display = 'none';
     document.getElementById('mappingJson').textContent = '';
 
+    // Show API key instructions again
+    document.querySelector('.api-key-instructions').style.display = 'block';
+
     // Clear selections
     document.getElementById('gymSelect').value = '';
     document.getElementById('wallSelect').value = '';
@@ -85,6 +88,9 @@ class WallVisualizer {
       if (!data.viewed_gyms || !Array.isArray(data.viewed_gyms)) {
         throw new Error('No gyms found in the response');
       }
+
+      // Hide API key instructions
+      document.querySelector('.api-key-instructions').style.display = 'none';
 
       // Populate gym select
       const gymSelect = document.getElementById('gymSelect');

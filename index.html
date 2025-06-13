@@ -13,11 +13,17 @@
     <h1>Climbing Wall Visualizer</h1>
 
     <div class="input-section">
-      <div id="apiKeyContainer">
+      <div id="apiKeyContainer" class="section">
+        <h2>Enter Your Crux API Key</h2>
         <div class="input-group">
-          <input type="password" id="apiKeyInput" placeholder="Enter your Crux API key">
+          <input type="text" id="apiKeyInput" placeholder="Enter your API key">
           <button id="loadGymsButton">Load Gyms</button>
         </div>
+        <p class="api-key-instructions">To get your API key:
+          <br>1. Open the Crux app
+          <br>2. Go to Profile -> Settings -> API Authentication
+          <br>3. Copy the API key
+        </p>
       </div>
 
       <div id="gymSelectionContainer" style="display: none;">

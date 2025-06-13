@@ -28,6 +28,16 @@ h1 {
 
 #apiKeyContainer {
   margin-bottom: 20px;
+  text-align: center;
+}
+
+#apiKeyContainer h2 {
+  margin-bottom: 15px;
+}
+
+#apiKeyContainer .input-group {
+  justify-content: center;
+  margin-bottom: 5px;
 }
 
 #gymSelectionContainer,
@@ -231,4 +241,16 @@ h1 {
   padding: 10px;
   margin-top: 10px;
   display: none;
+}
+
+.api-key-instructions {
+  margin-top: 15px;
+  font-size: 0.9em;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
 }
